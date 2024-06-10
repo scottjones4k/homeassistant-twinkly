@@ -1,0 +1,11 @@
+{
+  "domain": "twinkly",
+  "name": "Twinkly",
+  "documentation": "",
+  "requirements": [
+    "pytwinkly==0.1.6"
+  ],
+  "dependencies": [],
+  "codeowners": [],
+  "version": "1.0.0"
+}

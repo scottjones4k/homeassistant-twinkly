@@ -1,0 +1,7 @@
+{
+    "name": "Twinkly Custom Component",
+    "render_readme": true,
+    "domains": [
+      "sensor"
+    ]
+  }
