@@ -4,6 +4,7 @@
   "codeowners": [],
   "documentation": "https://github.com/scottjones4k/homeassistant-twinkly",
   "iot_class": "local_polling",
+  "loggers": ["twinkly"],
   "requirements": [
     "pytwinkly==0.1.6"
   ],

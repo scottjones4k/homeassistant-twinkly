@@ -3,10 +3,14 @@ import time
 
 import voluptuous as vol
 
+from homeassistant.core import HomeAssistant
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.components.light import (PLATFORM_SCHEMA, SUPPORT_BRIGHTNESS, ATTR_BRIGHTNESS, LightEntity)
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.const import (CONF_HOST, CONF_NAME)
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers import device_registry as dr
+from .const import DOMAIN
 
 REQUIREMENTS = ['pytwinkly==0.1.6']
 
@@ -20,12 +24,16 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 
-async def async_setup_platform(hass, config, async_add_entities,
-                               discovery_info=None):
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
     """Set up the Twinkly light platform."""
     from pytwinkly.twinkly import TwinklyClient
-    host = config.get(CONF_HOST)
-    name = config.get(CONF_NAME)
+    config = hass.data[DOMAIN][config_entry.entry_id]
+    host = config[CONF_HOST]
+    name = config.get[CONF_NAME]
     client = TwinklyClient(host)
     auth = await client.authenticate()
     device_info = None
